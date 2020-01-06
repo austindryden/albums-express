@@ -28,11 +28,16 @@ app.get('/album/:albumID/song/:songID', (request, response) =>{
     response.send(album.getSongsForAlbum(albumID,songID));
 });
 
+app.get('/API/album/:albumID', (request, response) =>{
+    const albumID = request.params.albumID;
+    response.json(album.getAlbumJSON(albumID));
+});
 
-
-
-
-
+app.get('/API/album/:albumID/song/:songID', (request, response) =>{
+    const albumID = request.params.albumID;
+    const songID = request.params.songID;
+    response.json(album.getSongJSON(albumID,songID));
+});
 
 server.listen(PORT, () =>{
     console.log(`listening on port ${PORT}`);

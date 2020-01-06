@@ -15,6 +15,15 @@ function getAlbums(albumID){
     return "no album found";
 }
 
+function getAlbumJSON(albumID){
+    for(let album of albumData["albums"]){
+        if (albumID == album.id){
+            return album;
+        }
+    }
+    return {};
+}
+
 function getSongsForAlbum(albumID,songID){
     for(let album of albumData["albums"]){
         if (albumID == album.id){
@@ -26,6 +35,19 @@ function getSongsForAlbum(albumID,songID){
         }
     }
     return "Song not found!";
+}
+
+function getSongJSON(albumID,songID){
+    for(let album of albumData["albums"]){
+        if (albumID == album.id){
+            for (let song of album.songs){
+                if (songID == song.id){
+                    return song;
+                }
+            }
+        }
+    }
+    return {};
 }
 
 function getAllSongs(albumID){
@@ -45,5 +67,7 @@ function getAllSongs(albumID){
 module.exports = {
     getAlbums,
     getSongsForAlbum,
-    getAllSongs
+    getAllSongs,
+    getAlbumJSON,
+    getSongJSON
 };
