@@ -6,10 +6,20 @@ albumData = JSON.parse(albumData);
 // console.log(Object.keys(albumData));
 // console.log(albumData.albums);
 
-function getAlbums(albumID){
+function getAllAlbums(){
+    let albumString = "<ul>"
+    
+    for (let album of albumData["albums"]){
+        albumString += `<a href="/album/${album.id}"><li> ${album.title} by ${album.artist}</a>`;
+    }
+    albumString += "</ul>";
+    return albumString;
+}
+
+function getAlbum(albumID){
     for(let album of albumData["albums"]){
         if (albumID == album.id){
-            return `${album.title} by ${album.artist}`;
+            return `<a href="/album/${album.id}/song">${album.title} by ${album.artist}</a>`;
         }
     }
     return "no album found";
@@ -65,7 +75,8 @@ function getAllSongs(albumID){
 }
 
 module.exports = {
-    getAlbums,
+    getAllAlbums,
+    getAlbum,
     getSongsForAlbum,
     getAllSongs,
     getAlbumJSON,

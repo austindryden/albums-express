@@ -11,10 +11,13 @@ app.get('/', (request, response)=>{
     response.send("go somewhere so I can do something");
 });
 
+app.get('/album', (request, response) =>{
+    response.send(album.getAllAlbums());
+});
+
 app.get('/album/:albumID', (request, response) =>{
     const albumID = request.params.albumID;
-    response.send(album.getAlbums(albumID));
-
+    response.send(album.getAlbum(albumID));
 });
 
 app.get('/album/:albumID/song', (request, response) =>{
